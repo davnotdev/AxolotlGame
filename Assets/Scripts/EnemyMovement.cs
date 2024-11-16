@@ -5,6 +5,9 @@ using static UnityEngine.Mathf;
 
 public class EnemyMovement : MonoBehaviour
 {
+    Rigidbody2D rb;
+
+    bool collided = false;
 
     public enum MovePaths { Straight, SideToSide, LooptyLoop }
 
@@ -12,29 +15,42 @@ public class EnemyMovement : MonoBehaviour
     MovePaths path;
 
     float t = 0;
-    float downSpeed = 0.1f; // larger # = moves down the screen faster
-    float amplitude = 5f; // how wide move; larger # = wider
-    float period = 10f; //how fast move side-to-side; larger # = faster
+    float amplitude = 10f; // how wide move; larger # = wider
+    float period = 1.0f; //how fast move side-to-side; larger # = faster
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (path == MovePaths.SideToSide)
+        if (!collided)
         {
-            transform.position = new Vector3(amplitude * Sin(t * period), -t * downSpeed, 0.0f);
-            t += 0.01f;
+            if (path == MovePaths.Straight)
+            {
+                rb.velocity = Vector2.down * 5f;
+            }
+            else if (path == MovePaths.SideToSide)
+            {
+                rb.velocity = new Vector2(amplitude * Sin(t * period), -1f);
+                t += 0.01f;
+            }
+            else if (path == MovePaths.LooptyLoop)
+            {
+                rb.velocity = new Vector2(10 * Cos(t * 5f), 10 * Sin(t * 5f));
+                rb.velocity += new Vector2(0.0f, -0.8f);
+                t += 0.01f;
+            }
         }
-        else if (path == MovePaths.LooptyLoop)
-        {
-            transform.position = new Vector3(Cos(t), Sin(t), 0.0f);
-            transform.position += new Vector3(0.0f, -t * downSpeed, 0.0f);
-            t += 0.05f;
-        }
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        collided = true;
+        rb.velocity = Vector2.Reflect(rb.velocity, Vector2.up);
     }
 }
