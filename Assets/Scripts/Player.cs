@@ -8,29 +8,29 @@ public class Player : MonoBehaviour
     public GameObject offRoadMarkerRight;
     public float moveBackSpeedX = 0.5f;
 
-    private float horizontalSpeed = 0.2f;
-    private float startingY;
+    private float verticalSpeed = 0.2f;
+    private float startingX;
 
     void Start()
     {
-        startingY = transform.position.y;
+        startingX = transform.position.x;
     }
 
     void Update() 
     {
         if (
-            transform.position.x <= offRoadMarkerLeft.transform.position.x ||
-            transform.position.x >= offRoadMarkerRight.transform.position.x
+            transform.position.y <= offRoadMarkerLeft.transform.position.y ||
+            transform.position.y >= offRoadMarkerRight.transform.position.y
         )
         {
             Debug.Log("owie");
         }
 
-        if (transform.position.y != startingY)
+        if (transform.position.x != startingX)
         {
             transform.position = Vector3.MoveTowards(
                 transform.position, 
-                new Vector2(transform.position.x, startingY),
+                new Vector2(startingX, transform.position.y),
                 moveBackSpeedX * Time.deltaTime
             );
         }
@@ -38,10 +38,10 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        float inputAxisX = Input.GetAxis("Horizontal");
+        float inputAxisY = Input.GetAxis("Vertical");
         transform.Translate(new Vector2(
-            inputAxisX * horizontalSpeed,
-            0.0f
+            0.0f,
+            inputAxisY * verticalSpeed
         ));
     }
 
