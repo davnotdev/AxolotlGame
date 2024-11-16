@@ -33,17 +33,17 @@ public class EnemyMovement : MonoBehaviour
         {
             if (path == MovePaths.Straight)
             {
-                rb.velocity = Vector2.down * 5f;
+                rb.velocity = Vector2.left * 5f;
             }
             else if (path == MovePaths.SideToSide)
             {
-                rb.velocity = new Vector2(amplitude * Sin(t * period), -1f);
+                rb.velocity = new Vector2(-1f, amplitude * Sin(t * period));
                 t += 0.01f;
             }
             else if (path == MovePaths.LooptyLoop)
             {
                 rb.velocity = new Vector2(10 * Cos(t * 5f), 10 * Sin(t * 5f));
-                rb.velocity += new Vector2(0.0f, -0.8f);
+                rb.velocity += new Vector2(-0.8f, 0.0f);
                 t += 0.01f;
             }
         }
@@ -52,7 +52,11 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collided = true;
-        rb.velocity = Vector2.Reflect(rb.velocity, Vector2.up);
+        if (collision.gameObject.GetComponent<EnemyMovement>() == null)
+        {
+            collided = true;
+            rb.velocity = Vector2.Reflect(rb.velocity, Vector2.up);
+        }
+
     }
 }
