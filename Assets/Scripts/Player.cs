@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameObject offRoadMarkerLeft;
-    public GameObject offRoadMarkerRight;
+    public GameObject offRoadMarkerLower;
+    public GameObject offRoadMarkerHigher;
     public float moveBackSpeedX = 0.5f;
 
     private float verticalSpeed = 0.2f;
@@ -19,8 +19,8 @@ public class Player : MonoBehaviour
     void Update() 
     {
         if (
-            transform.position.y <= offRoadMarkerLeft.transform.position.y ||
-            transform.position.y >= offRoadMarkerRight.transform.position.y
+            transform.position.y <= offRoadMarkerLower.transform.position.y ||
+            transform.position.y >= offRoadMarkerHigher.transform.position.y
         )
         {
             Debug.Log("owie");
