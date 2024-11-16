@@ -22,6 +22,8 @@ public class EnemyMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        path = (MovePaths)Random.Range(0, 3);
+        Debug.Log(path);
     }
 
     // Update is called once per frame
