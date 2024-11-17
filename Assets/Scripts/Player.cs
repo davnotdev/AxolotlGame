@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
 
     private float verticalSpeed = 0.2f;
     private float startingX;
+    private bool canUseItem = true;
+    private float baguetteCooldown = 1.0f;
 
     void Start()
     {
@@ -54,11 +56,13 @@ public class Player : MonoBehaviour
             rb.MovePosition(sourcePosition - targetPosition + Vector2.right * moveBackSpeedX * direction);
         }
 
-        if (Input.GetKeyUp(KeyCode.Space)) 
+        if (canUseItem && Input.GetKeyUp(KeyCode.Space))
         {
             if (gameManager.DecrementBaguettes())
             {
                 BaugetteShockWave(); 
+                canUseItem = false;
+                StartCoroutine(ResetCanUseItem());
             }
         }
     }
@@ -92,5 +96,11 @@ public class Player : MonoBehaviour
         }
 
         gameManager.ScreenShake();
+    }
+
+    IEnumerator ResetCanUseItem()
+    {
+        yield return new WaitForSeconds(baguetteCooldown);
+        canUseItem = true;
     }
 }
