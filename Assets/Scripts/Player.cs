@@ -6,20 +6,23 @@ public class Player : MonoBehaviour
 {
     public GameObject offRoadMarkerLower;
     public GameObject offRoadMarkerHigher;
+    public Transform cameraTransform;
     public float moveBackSpeedX = 1.0f;
 
     private Rigidbody2D rb;
     private GameManager gameManager;
+    private ParticleSystem particleSys;
 
     private float verticalSpeed = 0.2f;
     private float startingX;
-    /* private bool bouncing = false; */
-    /* private Vector2 additionVelocity; */
 
     void Start()
     {
         gameManager = GameManager.Get();
+
         rb = GetComponent<Rigidbody2D>();
+        particleSys = GetComponent<ParticleSystem>();
+
         startingX = transform.position.x;
     }
 
@@ -31,7 +34,6 @@ public class Player : MonoBehaviour
             gameManager.GetHealth() != 0
         )
         {
-            Debug.Log("owie");
             gameManager.SetHealth(0);
         }
     }
@@ -52,34 +54,43 @@ public class Player : MonoBehaviour
             rb.MovePosition(sourcePosition - targetPosition + Vector2.right * moveBackSpeedX * direction);
         }
 
-        /* if (Mathf.Abs(transform.position.x - startingX) >= 0.1f && !bouncing) */
-        /* { */
-            /* StartCoroutine(BounceBack()); */
-        /* } */
-        /* if (bouncing) */
-        /* { */
-        /*     rb.MovePosition(additionVelocity); */
-        /* } */
+        if (Input.GetKeyUp(KeyCode.Space)) 
+        {
+            if (gameManager.DecrementBaguettes())
+            {
+                BaugetteShockWave(); 
+            }
+        }
     }
 
-    void OnCollisionEnter2D() {
+    void OnCollisionEnter2D() 
+    {
         Debug.Log("owie");
     }
 
-    /* IEnumerator BounceBack() */
-    /* { */
-    /*     bouncing = true; */
-    /*     yield return new WaitForSeconds(0.5f); */
-    /*     while (Mathf.Abs(transform.position.x - startingX) >= 0.1f) */ 
-    /*     { */
-    /*         Vector2 targetPosition = new Vector2(startingX, transform.position.y); */
-    /*         Vector2 sourcePosition = new Vector2(transform.position.x, transform.position.y); */
-    /*         float direction = (startingX - transform.position.x) / Mathf.Abs(startingX - transform.position.x); */
+    void BaugetteShockWave() 
+    {
+        Vector3 blastPosition = transform.position;
+        EnemyMovement[] hitColliders = Object.FindObjectsOfType<EnemyMovement>();
 
-    /*         additionVelocity = sourcePosition - targetPosition + Vector2.right * moveBackSpeedX * direction; */
-    /*         yield return new WaitForEndOfFrame(); */
-    /*     } */
-    /*     additionVelocity = new Vector2(); */
-    /*     bouncing = false; */
-    /* } */
+        particleSys.Play();
+
+        foreach (EnemyMovement enemyMovement in hitColliders)
+        {
+            GameObject enemy = enemyMovement.gameObject;
+            Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
+            if (enemyRb && enemy.GetComponent<EnemyMovement>()) 
+            {
+                enemyRb.AddForce(
+                    (enemy.transform.position - blastPosition).normalized * 
+                    GameManager.baguetteBlastForce,
+                    ForceMode2D.Impulse
+                );
+                enemyRb.AddTorque(GameManager.baguetteBlastTorque);
+            }
+            enemyMovement.DisableMovement();
+        }
+
+        gameManager.ScreenShake();
+    }
 }
