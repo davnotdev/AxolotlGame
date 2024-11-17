@@ -14,6 +14,12 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     MovePaths path;
 
+    [SerializeField]
+    float x_bound;
+
+    [SerializeField]
+    float lifespan;
+
     float t = 0;
 
     // Start is called before the first frame update
@@ -24,28 +30,33 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!collided)
         {
             if (path == MovePaths.Straight)
             {
                 rb.velocity = Vector2.left * 5f;
+                                t += 0.1f;
             }
             else if (path == MovePaths.SideToSide)
             {
-                rb.velocity = new Vector2(0.0f, 10.0f * Cos(t * 0.5f));
+                rb.velocity = new Vector2(0.0f, 10.0f * Cos(t));
                 rb.velocity += new Vector2(-0.8f, 0.0f);
                 t += 0.1f;
             }
             else if (path == MovePaths.LooptyLoop)
             {
-                rb.velocity = new Vector2(10.0f * Cos(t * 0.5f), 10.0f * Sin(t * 0.5f));
+                rb.velocity = new Vector2(7.0f * Cos(t), 7.0f * Sin(t));
                 rb.velocity += new Vector2(-0.8f, 0.0f);
                 t += 0.1f;
             }
         }
-        
+
+        if (transform.position.x < x_bound || t > lifespan)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void DisableMovement() {
