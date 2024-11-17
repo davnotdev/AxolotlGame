@@ -21,7 +21,6 @@ public class EnemyMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         path = (MovePaths)Random.Range(0, 3);
-        Debug.Log(path);
     }
 
     // Update is called once per frame
@@ -47,6 +46,10 @@ public class EnemyMovement : MonoBehaviour
             }
         }
         
+    }
+
+    public void DisableMovement() {
+        collided = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
