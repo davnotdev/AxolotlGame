@@ -72,6 +72,26 @@ public class Player : MonoBehaviour
         Debug.Log("owie");
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other)
+        {
+            switch (other.tag) {
+                case "Substance":
+                    gameManager.IncrementScore();
+                    break;
+                case "Baguette":
+                    gameManager.IncrementBaguettes();
+                    break;
+                case "Toolbox":
+                    gameManager.SetHealth((int)gameManager.GetHealth() + 1);
+                    break;
+            }
+
+            Destroy(other.gameObject);
+        }
+    }
+
     void BaugetteShockWave() 
     {
         Vector3 blastPosition = transform.position;

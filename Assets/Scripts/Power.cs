@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Substance : MonoBehaviour
+public class Power : MonoBehaviour
 {
     
     Rigidbody2D rb;
@@ -19,15 +19,25 @@ public class Substance : MonoBehaviour
     [SerializeField]
     float x_bound;
     
-    // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        gameObject.GetComponent<SpriteRenderer>().sprite = substanceSprites[Random.Range(0, substanceSprites.Length)];
+        int randomIndex = Random.Range(0, substanceSprites.Length);
+        gameObject.GetComponent<SpriteRenderer>().sprite = substanceSprites[randomIndex];
         transform.position = new Vector2(x, Random.Range(y_min, y_max));
+
+        switch (randomIndex)
+        {
+            case 0:
+                this.tag = "Baguette";
+                break;
+            case 1:
+                this.tag = "Toolbox";
+                break;
+        }
+
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         rb.velocity = Vector2.left * 5f;

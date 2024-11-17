@@ -39,8 +39,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private uint health = 100;
+    private uint health = 5;
     private uint baguettes = 0;
+    private uint score = 0;
 
     public uint GetHealth()
     {
@@ -81,6 +82,16 @@ public class GameManager : MonoBehaviour
             baguettes--; 
             return true;
         }
+    }
+
+    public uint GetScore()
+    {
+        return score; 
+    }
+
+    public void IncrementScore()
+    {
+        score++;
     }
 
     public void ScreenShake() {
