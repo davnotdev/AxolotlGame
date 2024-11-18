@@ -10,6 +10,17 @@ public class StartMenu : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
+    public void Cutscene1_2()
+    {
+        SceneManager.LoadScene("Cutscene1_2");
+    }
+
+    public void Cutscene3_4()
+    {
+        SceneManager.LoadScene("Cutscene3_4");
+    }
+
+
     public void quit()
     {
         Application.Quit();

@@ -17,5 +17,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SoberEnding.unity
     guid: 8e3b715ab41562140823b11b12b1e402
+  - enabled: 1
+    path: Assets/Scenes/Cutscene1_2.unity
+    guid: fa5100f9582fba7448791b936b9a38ee
+  - enabled: 1
+    path: Assets/Scenes/Cutscene3_4.unity
+    guid: 37570634efba6a54d8045f828db8e5fe
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: a0b7c41b14e5375e1a9608213ea6c67b, type: 3}
