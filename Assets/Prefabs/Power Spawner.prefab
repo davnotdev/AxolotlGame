@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6389437494806302750}
-  - component: {fileID: 5146904735003063069}
+  - component: {fileID: 3297337075715156164}
   m_Layer: 0
   m_Name: Power Spawner
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5146904735003063069
+--- !u!114 &3297337075715156164
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 448176240569993193}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf1524b975b54340ac15d0b88fa7b3a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6207f2bcfc694e344a4e2856920092ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6816715723301795679, guid: dd6c7c2f32cece8829d26e4b5eb25a27, type: 3}
-  minSpawnTime: 5
+  prefab: {fileID: 0}
+  minSpawnTime: 0
   maxSpawnTime: 0
