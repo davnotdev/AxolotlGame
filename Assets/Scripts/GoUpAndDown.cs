@@ -11,7 +11,7 @@ public class GoUpAndDown : MonoBehaviour
 
     IEnumerator Go()
     {
-        yield return new WaitForSeconds(Random.value / 2.0f);
+        yield return new WaitForSeconds(Random.Range(0.1f, 1.2f));
         while (true)
         {
             transform.position += new Vector3(0.0f, 0.005f * Mathf.Cos(Time.time * 10.0f), 0.0f);

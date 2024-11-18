@@ -103,9 +103,9 @@ MonoBehaviour:
   substanceSprites:
   - {fileID: 21300000, guid: cb1da23744072544ab9d9bf40bafcf2c, type: 3}
   - {fileID: 21300000, guid: 98d409356cc8d154c9865673fae7dc09, type: 3}
-  x: 10
+  x: 12
   y_min: 1
-  y_max: -5
+  y_max: -4
   x_bound: -9
 --- !u!50 &7236026197123968604
 Rigidbody2D:

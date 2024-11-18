@@ -51,9 +51,9 @@ MonoBehaviour:
   substanceSprites:
   - {fileID: 21300000, guid: b67d968ab17f2ce5397f8ba4026af889, type: 3}
   - {fileID: 21300000, guid: 570c63cdf571e915fa12af947df490bd, type: 3}
-  x: 10
-  y_min: 1
-  y_max: -5
+  x: 12
+  y_min: 1.2
+  y_max: -4
   x_bound: -9
 --- !u!212 &2408174305352770348
 SpriteRenderer:
