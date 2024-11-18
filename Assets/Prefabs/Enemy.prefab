@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2890074119352704333}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,6 +102,9 @@ MonoBehaviour:
   path: 2
   x_bound: -10
   lifespan: 200
+  x: 5
+  y_min: 2
+  y_max: -8
 --- !u!50 &5457926021869870438
 Rigidbody2D:
   serializedVersion: 4
@@ -127,7 +130,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!58 &2890074119352704333
 CircleCollider2D:

@@ -20,11 +20,17 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     float lifespan;
 
+    [SerializeField]
+    float x;
+
+    [SerializeField]
+    float y_min, y_max;
+
     float t = 0;
 
-    // Start is called before the first frame update
     void Awake()
     {
+        transform.position = new Vector2(x, Random.Range(y_min, y_max));
         rb = GetComponent<Rigidbody2D>();
         path = (MovePaths)Random.Range(0, 3);
     }
@@ -65,10 +71,11 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<EnemyMovement>() == null)
+        if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<EnemyMovement>() == null)
         {
             collided = true;
-            rb.velocity = Vector2.Reflect(rb.velocity, Vector2.right);
+            rb.velocity = Vector2.Reflect(rb.velocity, Vector2.right) * 8.0f;
+            GetComponent<CircleCollider2D>().enabled = false;
         }
 
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,21 +44,31 @@ public class GameManager : MonoBehaviour
     private uint baguettes = 0;
     private uint score = 0;
 
-    public uint GetHealth()
+    public int GetHealth()
     {
-        return health;
+        return (int)health;
     }
 
     // `health` will be clamped appropriately
     public void SetHealth(int health)
     {
+        if (health - this.health < 0)
+        {
+            ScreenShake();
+        }
+
         this.health = (uint)health;
-        this.OnDeath();
+
+        if (this.health == 0) 
+        {
+            this.OnDeath();
+        }
     }
 
     private void OnDeath()
     {
-        
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
     }
 
     public uint GetBaguettes()
