@@ -102,10 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb34dba3bcc916e6a8447de7ffe317a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offRoadMarkerLower: {fileID: 0}
-  offRoadMarkerHigher: {fileID: 0}
   cameraTransform: {fileID: 0}
-  moveBackSpeedX: 0.5
+  minX: -6.5
+  maxX: 6.5
 --- !u!61 &3989600589914251067
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -368,7 +367,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.49056602, g: 0.48362404, b: 0.48362404, a: 1}
+      maxColor: {r: 0.6226415, g: 0.5331646, b: 0.4552332, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -432,7 +431,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.8
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1190,7 +1189,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.55384636
+          value: 0.2295208
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1198,8 +1197,8 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.46800867
-          value: 0.015384613
+          time: 0.3416964
+          value: 0
           inSlope: -5.292743
           outSlope: -5.292743
           tangentMode: 0

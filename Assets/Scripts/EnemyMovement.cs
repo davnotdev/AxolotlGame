@@ -35,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
 
     private float randomVariation;
     private Vector2 maybeInit;
-    private float secsToDespawn = 5.0f;
+    private float secsToDespawn = 15.0f;
 
     void Awake()
     {

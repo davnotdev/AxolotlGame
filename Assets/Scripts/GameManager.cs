@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
 
     public Transform cameraTransform;
+    public TMP_Text healthCounter;
+    public TMP_Text baguetteCounter;
+    public TMP_Text scoreCounter;
 
     public const float baguetteBlastForce = 25.0f;
     public const float baguetteBlastTorque = 300.0f;
@@ -17,6 +21,10 @@ public class GameManager : MonoBehaviour
     private Vector3 preShakingPosition;
 
     private float t = 0;
+
+    private uint health = 5;
+    private uint baguettes = 0;
+    private uint score = 0;
 
     public GameManager()
     {
@@ -36,6 +44,8 @@ public class GameManager : MonoBehaviour
 
         EnemySpawner._minPerSpawn = 3;
         EnemySpawner._maxPerSpawn = 5;
+        
+        healthCounter.text = this.health.ToString();
     }
 
     void Update() {
@@ -69,10 +79,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private uint health = 5;
-    private uint baguettes = 0;
-    private uint score = 0;
-
     public int GetHealth()
     {
         return (int)health;
@@ -87,6 +93,7 @@ public class GameManager : MonoBehaviour
         }
 
         this.health = (uint)health;
+        healthCounter.text = this.health.ToString();
 
         if (this.health == 0) 
         {
@@ -108,6 +115,7 @@ public class GameManager : MonoBehaviour
     public void IncrementBaguettes()
     {
         baguettes++; 
+        baguetteCounter.text = this.baguettes.ToString();
     }
 
     // Returns whether the decrement succeeded
@@ -120,6 +128,7 @@ public class GameManager : MonoBehaviour
         else
         {
             baguettes--; 
+            baguetteCounter.text = this.baguettes.ToString();
             return true;
         }
     }
@@ -132,6 +141,7 @@ public class GameManager : MonoBehaviour
     public void IncrementScore()
     {
         score++;
+        scoreCounter.text = this.score.ToString();
     }
 
     public void ScreenShake() {
