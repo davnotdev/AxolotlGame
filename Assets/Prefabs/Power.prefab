@@ -54,7 +54,7 @@ MonoBehaviour:
   x: 12
   y_min: 1.2
   y_max: -4
-  x_bound: -9
+  x_bound: -12
 --- !u!212 &2408174305352770348
 SpriteRenderer:
   m_ObjectHideFlags: 0

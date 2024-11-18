@@ -106,7 +106,7 @@ MonoBehaviour:
   x: 12
   y_min: 1
   y_max: -4
-  x_bound: -9
+  x_bound: -12
 --- !u!50 &7236026197123968604
 Rigidbody2D:
   serializedVersion: 4

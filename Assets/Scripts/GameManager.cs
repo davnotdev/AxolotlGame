@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     private bool isShaking = false;
     private Vector3 preShakingPosition;
 
+    private float t = 0;
+
     public GameManager()
     {
         instance = this;
@@ -24,6 +26,16 @@ public class GameManager : MonoBehaviour
     public static GameManager Get()
     {
         return instance;
+    }
+
+    void Awake()
+    {
+        t = 0;
+        EnemySpawner._minimumSpawnTime = 2;
+        EnemySpawner._maximumSpawnTime = 5;
+
+        EnemySpawner._minPerSpawn = 3;
+        EnemySpawner._maxPerSpawn = 5;
     }
 
     void Update() {
@@ -38,6 +50,23 @@ public class GameManager : MonoBehaviour
         {
             cameraTransform.localPosition = preShakingPosition + Random.insideUnitSphere * GameManager.baguetteBlastShakingFactor;
         }
+
+
+
+        t += Time.deltaTime;
+
+        if (t > 50.0f)
+            Phase5();
+        else if (t > 40.0f)
+            Phase4();
+        else if (t > 30.0f)
+            Phase3();
+        else if (t > 20.0f)
+            Phase2();
+        else if (t > 10.0f)
+            Phase1();
+
+
     }
 
     private uint health = 5;
@@ -139,4 +168,40 @@ public class GameManager : MonoBehaviour
         }
         return (uint)(weights.Count - 1);
     }
+
+
+    ///////  PHASES  /////////////////////////////////////////////////
+    
+    public void Phase1()
+    {
+        EnemySpawner._minimumSpawnTime = 2;
+        EnemySpawner._maximumSpawnTime = 4;
+    }
+
+    public void Phase2()
+    {
+        EnemySpawner._minimumSpawnTime = 1;
+        EnemySpawner._maximumSpawnTime = 3;
+    }
+
+    public void Phase3()
+    {
+        EnemySpawner._minimumSpawnTime = 1;
+        EnemySpawner._maximumSpawnTime = 2;
+    }
+
+    public void Phase4()
+    {
+        EnemySpawner._minimumSpawnTime = 1;
+        EnemySpawner._maximumSpawnTime = 1;
+    }
+
+    public void Phase5()
+    {
+        EnemySpawner._minimumSpawnTime = 0;
+        EnemySpawner._maximumSpawnTime = 1;
+        EnemySpawner._minPerSpawn = 2;
+        EnemySpawner._maxPerSpawn = 3;
+    }
+
 }

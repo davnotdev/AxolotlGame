@@ -170,6 +170,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5652313121897431117, guid: f5afc67426afb2c42b7732d3b683346a, type: 3}
+      propertyPath: maxSpawnTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652313121897431117, guid: f5afc67426afb2c42b7732d3b683346a, type: 3}
+      propertyPath: minSpawnTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5961163226157389339, guid: f5afc67426afb2c42b7732d3b683346a, type: 3}
       propertyPath: m_Name
       value: Substance Spawner
@@ -414,6 +422,14 @@ PrefabInstance:
     - target: {fileID: 448176240569993193, guid: 7dcca0201aecd81d993c2f05b7e5d0ab, type: 3}
       propertyPath: m_Name
       value: Power Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146904735003063069, guid: 7dcca0201aecd81d993c2f05b7e5d0ab, type: 3}
+      propertyPath: maxSpawnTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146904735003063069, guid: 7dcca0201aecd81d993c2f05b7e5d0ab, type: 3}
+      propertyPath: minSpawnTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6389437494806302750, guid: 7dcca0201aecd81d993c2f05b7e5d0ab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -725,8 +741,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 3159442036012056408, guid: 55d7485405139bd40824be35efc6bf16, type: 3}
-  _minimumSpawnTime: 5
-  _maximumSpawnTime: 0
 --- !u!4 &1796367815
 Transform:
   m_ObjectHideFlags: 0
