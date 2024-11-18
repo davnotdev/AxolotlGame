@@ -33,13 +33,14 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     float y_min, y_max;
 
-    float t = 0;
-
     private float randomVariation;
     private Vector2 maybeInit;
+    private float secsToDespawn = 5.0f;
 
     void Awake()
     {
+        StartCoroutine(Despawn());
+
         transform.position = new Vector2(x, Random.Range(y_min, y_max));
         rb = GetComponent<Rigidbody2D>();
         path = (MovePaths)GameManager.RandomWithWeights(
@@ -79,26 +80,25 @@ public class EnemyMovement : MonoBehaviour
                     rb.velocity *= 1.02f;
                     break;
                 case MovePaths.SideToSide:
-                    rb.velocity = new Vector2(-randomVariation, 10.0f * Cos(t + Random.value));
-                    t += 0.1f;
+                    rb.velocity = new Vector2(-randomVariation, 10.0f * Cos(Time.time + Random.value));
                     break;
                 case MovePaths.LooptyLoop:
-                    rb.velocity = new Vector2(7.0f * Cos(t + Random.value), 7.0f * Sin(t + Random.value));
+                    rb.velocity = new Vector2(7.0f * Cos(Time.time + Random.value), 7.0f * Sin(Time.time + Random.value));
                     rb.velocity += new Vector2(-randomVariation, 0.0f);
-                    t += 0.1f;
                 break;
             }
         } else {
             rb.constraints = 0;
         }
 
-        if (transform.position.x < x_bound || t > lifespan)
+        if (transform.position.x < x_bound)
         {
             Destroy(gameObject);
         }
     }
 
-    public void DisableMovement() {
+    public void DisableMovement()
+    {
         collided = true;
     }
 
@@ -111,5 +111,11 @@ public class EnemyMovement : MonoBehaviour
             GetComponent<CircleCollider2D>().enabled = false;
         }
 
+    }
+
+    IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(secsToDespawn);
+        Destroy(gameObject);
     }
 }
