@@ -42,7 +42,8 @@ public class EnemyMovement : MonoBehaviour
     {
         transform.position = new Vector2(x, Random.Range(y_min, y_max));
         rb = GetComponent<Rigidbody2D>();
-        path = (MovePaths)Random.Range(0, (int)MovePaths._Count);
+        path = (MovePaths)GameManager.RandomWithWeights(
+                new List<uint> { 10, 10, 1, 1 });
 
         switch (path) 
         {
@@ -50,16 +51,16 @@ public class EnemyMovement : MonoBehaviour
                 randomVariation = Random.Range(8.0f, 10.0f);
                 break;
             case MovePaths.RandomDirection:
-                randomVariation = Random.Range(2.0f, 5.0f);
+                randomVariation = Random.Range(8.0f, 10.0f);
                 float x = Random.value;
                 float y = Random.value;
                 rb.velocity = (new Vector2(x, y)).normalized * randomVariation;
                 break;
             case MovePaths.SideToSide:
-                randomVariation = Random.Range(1.0f, 4.0f);
+                randomVariation = Random.Range(5.0f, 10.0f);
                 break;
             case MovePaths.LooptyLoop:
-                randomVariation = Random.Range(3.0f, 5.0f);
+                randomVariation = Random.Range(8.0f, 14.0f);
                 break;
         }
     }
@@ -75,7 +76,7 @@ public class EnemyMovement : MonoBehaviour
                     rb.velocity = Random.onUnitSphere * 5.0f + Vector3.left * randomVariation;
                     break;
                 case MovePaths.RandomDirection:
-                    rb.velocity *= 1.001f;
+                    rb.velocity *= 1.02f;
                     break;
                 case MovePaths.SideToSide:
                     rb.velocity = new Vector2(-randomVariation, 10.0f * Cos(t + Random.value));

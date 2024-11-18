@@ -118,9 +118,25 @@ public class GameManager : MonoBehaviour
         cameraTransform.localPosition = preShakingPosition;
     }
 
-    // Pass in value and weight
-    static void RandomWithWeights(List<(uint, uint)> a) 
+    public static uint RandomWithWeights(List<uint> weights)
     {
-        
+        uint sum = 0;
+        foreach (var weight in weights) 
+        {
+            sum += weight;
+        }
+
+        int random = Random.Range((int)0, (int)sum);
+
+        uint accum = 0;
+        for (int i = 0; i < weights.Count; i++)
+        {
+            accum += weights[i];
+            if (random < accum)
+            {
+                return (uint)i;
+            }
+        }
+        return (uint)(weights.Count - 1);
     }
 }

@@ -30,7 +30,7 @@ public class Substance : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.velocity = Vector2.left * 5f;
+        rb.velocity = Vector2.left * 10f;
         if (transform.position.x < x_bound)
         {
             Destroy(gameObject);
