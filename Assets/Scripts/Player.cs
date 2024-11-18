@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 
     private float verticalSpeed = 0.2f;
     private float horizontalSpeed = 0.15f;
-    private float moveBackSpeedX = 0.05f;
+    private float moveBackSpeedX = 0.001f;
     private float startingX;
     private bool canUseItem = true;
     private float baguetteCooldown = 1.0f;
