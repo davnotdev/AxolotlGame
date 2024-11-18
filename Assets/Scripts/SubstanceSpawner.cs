@@ -6,16 +6,18 @@ public class SubstanceSpawner : MonoBehaviour
     private GameObject prefab;
 
     [SerializeField]
-    private float minSpawnTime;
+    public static float minSpawnTime;
 
     [SerializeField]
-    private float maxSpawnTime;
+    public static float maxSpawnTime;
 
     private float timeUntilNextSpawn;
 
     void Awake()
     {
         setTimeUntilNextSpawn();
+        minSpawnTime = 5;
+        maxSpawnTime = 10;
     }
 
     void Update()

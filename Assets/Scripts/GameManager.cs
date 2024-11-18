@@ -44,7 +44,13 @@ public class GameManager : MonoBehaviour
 
         EnemySpawner._minPerSpawn = 3;
         EnemySpawner._maxPerSpawn = 5;
-        
+
+        SubstanceSpawner.minSpawnTime = 5;
+        SubstanceSpawner.maxSpawnTime = 10;
+
+        PowerSpawner.minSpawnTime = 10;
+        PowerSpawner.maxSpawnTime = 15;
+
         healthCounter.text = this.health.ToString();
     }
 
@@ -65,15 +71,15 @@ public class GameManager : MonoBehaviour
 
         t += Time.deltaTime;
 
-        if (t > 50.0f)
+        if (t > 100.0f)
             Phase5();
-        else if (t > 40.0f)
+        else if (t > 80.0f)
             Phase4();
-        else if (t > 30.0f)
+        else if (t > 60.0f)
             Phase3();
-        else if (t > 20.0f)
+        else if (t > 40.0f)
             Phase2();
-        else if (t > 10.0f)
+        else if (t > 20.0f)
             Phase1();
 
 
@@ -104,7 +110,12 @@ public class GameManager : MonoBehaviour
     private void OnDeath()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentSceneName);
+        SceneManager.LoadScene("GameOver");
+    }
+
+    private void SoberEnding()
+    {
+        SceneManager.LoadScene("SoberEnding");
     }
 
     public uint GetBaguettes()
@@ -184,26 +195,53 @@ public class GameManager : MonoBehaviour
     
     public void Phase1()
     {
+        Debug.Log("PHASE 1");
+        
         EnemySpawner._minimumSpawnTime = 2;
         EnemySpawner._maximumSpawnTime = 4;
+
+        SubstanceSpawner.minSpawnTime = 2;
+        SubstanceSpawner.maxSpawnTime = 3;
     }
 
     public void Phase2()
     {
+        Debug.Log("PHASE 2");
+
         EnemySpawner._minimumSpawnTime = 1;
         EnemySpawner._maximumSpawnTime = 3;
+
+        SubstanceSpawner.minSpawnTime = 0.5f;
+        SubstanceSpawner.maxSpawnTime = 1.5f;
+
+        PowerSpawner.minSpawnTime = 5;
+        PowerSpawner.maxSpawnTime = 10;
     }
 
     public void Phase3()
     {
+        Debug.Log("PHASE 3");
+
         EnemySpawner._minimumSpawnTime = 1;
         EnemySpawner._maximumSpawnTime = 2;
+        EnemySpawner._minPerSpawn = 2;
+        EnemySpawner._minPerSpawn = 4;
+
+        SubstanceSpawner.minSpawnTime = 0.5f;
+        SubstanceSpawner.maxSpawnTime = 1.5f;
     }
 
     public void Phase4()
     {
+        Debug.Log("PHASE 4");
+        if (score == 0)
+            SoberEnding();
+
         EnemySpawner._minimumSpawnTime = 1;
         EnemySpawner._maximumSpawnTime = 1;
+
+        PowerSpawner.minSpawnTime = 5;
+        PowerSpawner.maxSpawnTime = 5;
     }
 
     public void Phase5()
