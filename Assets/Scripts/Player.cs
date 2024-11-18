@@ -26,7 +26,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         particleSys = GetComponent<ParticleSystem>();
 
-        startingX = transform.position.x;
+        // startingX = transform.position.x;
+        startingX = 0.0f;
     }
 
     void FixedUpdate()
@@ -69,7 +70,6 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("LOSING HEALTH!");
             gameManager.SetHealth(gameManager.GetHealth() - 1);
         }
     }
@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
         {
             GameObject enemy = enemyMovement.gameObject;
             Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
-            if (enemyRb && enemy.GetComponent<EnemyMovement>()) 
+            if (enemyRb && (enemy.GetComponent<EnemyMovement>())) 
             {
                 enemyRb.AddForce(
                     (enemy.transform.position - blastPosition).normalized * 

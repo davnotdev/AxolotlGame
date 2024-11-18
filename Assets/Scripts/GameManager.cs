@@ -117,4 +117,10 @@ public class GameManager : MonoBehaviour
         isShaking = false;
         cameraTransform.localPosition = preShakingPosition;
     }
+
+    // Pass in value and weight
+    static void RandomWithWeights(List<(uint, uint)> a) 
+    {
+        
+    }
 }

@@ -10,8 +10,8 @@ public class EnemyMovement : MonoBehaviour
     bool collided = false;
 
     public enum MovePaths { 
-        Straight, 
         Crackhead,
+        RandomDirection,
         SideToSide, 
         LooptyLoop,
 
@@ -35,11 +35,33 @@ public class EnemyMovement : MonoBehaviour
 
     float t = 0;
 
+    private float randomVariation;
+    private Vector2 maybeInit;
+
     void Awake()
     {
         transform.position = new Vector2(x, Random.Range(y_min, y_max));
         rb = GetComponent<Rigidbody2D>();
         path = (MovePaths)Random.Range(0, (int)MovePaths._Count);
+
+        switch (path) 
+        {
+            case MovePaths.Crackhead:
+                randomVariation = Random.Range(8.0f, 10.0f);
+                break;
+            case MovePaths.RandomDirection:
+                randomVariation = Random.Range(2.0f, 5.0f);
+                float x = Random.value;
+                float y = Random.value;
+                rb.velocity = (new Vector2(x, y)).normalized * randomVariation;
+                break;
+            case MovePaths.SideToSide:
+                randomVariation = Random.Range(1.0f, 4.0f);
+                break;
+            case MovePaths.LooptyLoop:
+                randomVariation = Random.Range(3.0f, 5.0f);
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -49,23 +71,24 @@ public class EnemyMovement : MonoBehaviour
         {
             switch (path) 
             {
-                case MovePaths.Straight:
-                    rb.velocity = Vector2.left * 5f;
-                    t += 0.1f;
-                    break;
                 case MovePaths.Crackhead:
-                    rb.velocity = Random.onUnitSphere * 5.0f + Vector3.left * 8.0f;
+                    rb.velocity = Random.onUnitSphere * 5.0f + Vector3.left * randomVariation;
+                    break;
+                case MovePaths.RandomDirection:
+                    rb.velocity *= 1.001f;
                     break;
                 case MovePaths.SideToSide:
-                    rb.velocity = new Vector2(-2.0f, 10.0f * Cos(t));
+                    rb.velocity = new Vector2(-randomVariation, 10.0f * Cos(t + Random.value));
                     t += 0.1f;
                     break;
                 case MovePaths.LooptyLoop:
-                    rb.velocity = new Vector2(7.0f * Cos(t), 7.0f * Sin(t));
-                    rb.velocity += new Vector2(-0.8f, 0.0f);
+                    rb.velocity = new Vector2(7.0f * Cos(t + Random.value), 7.0f * Sin(t + Random.value));
+                    rb.velocity += new Vector2(-randomVariation, 0.0f);
                     t += 0.1f;
                 break;
             }
+        } else {
+            rb.constraints = 0;
         }
 
         if (transform.position.x < x_bound || t > lifespan)

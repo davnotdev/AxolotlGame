@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2408174305352770348}
   - component: {fileID: 5470976229098928542}
   - component: {fileID: 3131271947855547006}
+  - component: {fileID: -4191938855825896629}
   m_Layer: 0
   m_Name: Power
   m_TagString: Untagged
@@ -51,9 +52,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b67d968ab17f2ce5397f8ba4026af889, type: 3}
   - {fileID: 21300000, guid: 570c63cdf571e915fa12af947df490bd, type: 3}
   x: 10
-  y_min: 2
+  y_min: 1
   y_max: -5
-  x_bound: -10
+  x_bound: -9
 --- !u!212 &2408174305352770348
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -178,3 +179,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.216, y: 1.216}
   m_EdgeRadius: 0
+--- !u!114 &-4191938855825896629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6816715723301795679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36911b580c62433b296e3c1c5bfd33b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
