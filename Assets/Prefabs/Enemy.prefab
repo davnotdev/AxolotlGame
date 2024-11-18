@@ -103,7 +103,7 @@ MonoBehaviour:
   x_bound: -10
   lifespan: 200
   x: 11.5
-  y_min: 1.5
+  y_min: 0.5
   y_max: -4.5
 --- !u!50 &5457926021869870438
 Rigidbody2D:

@@ -52,7 +52,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 570c63cdf571e915fa12af947df490bd, type: 3}
   - {fileID: 21300000, guid: 33b809b714d082690bc382173d4b4d9e, type: 3}
   x: 12
-  y_min: 1.2
+  y_min: 0.5
   y_max: -4
   x_bound: -12
 --- !u!212 &2408174305352770348
