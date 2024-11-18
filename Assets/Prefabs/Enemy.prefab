@@ -102,9 +102,9 @@ MonoBehaviour:
   path: 2
   x_bound: -10
   lifespan: 200
-  x: 5
-  y_min: 2
-  y_max: -8
+  x: 6.5
+  y_min: 1.5
+  y_max: -4.5
 --- !u!50 &5457926021869870438
 Rigidbody2D:
   serializedVersion: 4

@@ -9,7 +9,14 @@ public class EnemyMovement : MonoBehaviour
 
     bool collided = false;
 
-    public enum MovePaths { Straight, SideToSide, LooptyLoop }
+    public enum MovePaths { 
+        Straight, 
+        Crackhead,
+        SideToSide, 
+        LooptyLoop,
+
+        _Count,
+    }
 
     [SerializeField]
     MovePaths path;
@@ -32,7 +39,7 @@ public class EnemyMovement : MonoBehaviour
     {
         transform.position = new Vector2(x, Random.Range(y_min, y_max));
         rb = GetComponent<Rigidbody2D>();
-        path = (MovePaths)Random.Range(0, 3);
+        path = (MovePaths)Random.Range(0, (int)MovePaths._Count);
     }
 
     // Update is called once per frame
@@ -40,22 +47,24 @@ public class EnemyMovement : MonoBehaviour
     {
         if (!collided)
         {
-            if (path == MovePaths.Straight)
+            switch (path) 
             {
-                rb.velocity = Vector2.left * 5f;
-                                t += 0.1f;
-            }
-            else if (path == MovePaths.SideToSide)
-            {
-                rb.velocity = new Vector2(0.0f, 10.0f * Cos(t));
-                rb.velocity += new Vector2(-0.8f, 0.0f);
-                t += 0.1f;
-            }
-            else if (path == MovePaths.LooptyLoop)
-            {
-                rb.velocity = new Vector2(7.0f * Cos(t), 7.0f * Sin(t));
-                rb.velocity += new Vector2(-0.8f, 0.0f);
-                t += 0.1f;
+                case MovePaths.Straight:
+                    rb.velocity = Vector2.left * 5f;
+                    t += 0.1f;
+                    break;
+                case MovePaths.Crackhead:
+                    rb.velocity = Random.onUnitSphere * 5.0f + Vector3.left * 8.0f;
+                    break;
+                case MovePaths.SideToSide:
+                    rb.velocity = new Vector2(-2.0f, 10.0f * Cos(t));
+                    t += 0.1f;
+                    break;
+                case MovePaths.LooptyLoop:
+                    rb.velocity = new Vector2(7.0f * Cos(t), 7.0f * Sin(t));
+                    rb.velocity += new Vector2(-0.8f, 0.0f);
+                    t += 0.1f;
+                break;
             }
         }
 
