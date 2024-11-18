@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     private bool canUseItem = true;
     private float baguetteCooldown = 1.0f;
 
+    AudioManager audioManager;
+
     void Start()
     {
         gameManager = GameManager.Get();
@@ -28,6 +30,8 @@ public class Player : MonoBehaviour
 
         // startingX = transform.position.x;
         startingX = 0.0f;
+
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void FixedUpdate()
@@ -59,7 +63,10 @@ public class Player : MonoBehaviour
         {
             if (gameManager.DecrementBaguettes())
             {
-                BaugetteShockWave(); 
+                BaugetteShockWave();
+
+                audioManager.PlaySFX(audioManager.frackoff);
+
                 canUseItem = false;
                 StartCoroutine(ResetCanUseItem());
             }
@@ -70,6 +77,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            audioManager.PlaySFX(audioManager.ouch);
             gameManager.SetHealth(gameManager.GetHealth() - 1);
         }
     }
@@ -89,6 +97,7 @@ public class Player : MonoBehaviour
                     gameManager.SetHealth((int)gameManager.GetHealth() + 1);
                     break;
             }
+            audioManager.PlaySFX(audioManager.woohoo);
 
             Destroy(other.gameObject);
         }

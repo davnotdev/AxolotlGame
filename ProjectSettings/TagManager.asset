@@ -8,6 +8,7 @@ TagManager:
   - Baguette
   - Toolbox
   - Enemy
+  - Audio
   layers:
   - Default
   - TransparentFX
