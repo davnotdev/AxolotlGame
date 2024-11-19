@@ -195,8 +195,6 @@ public class GameManager : MonoBehaviour
     
     public void Phase1()
     {
-        Debug.Log("PHASE 1");
-        
         EnemySpawner._minimumSpawnTime = 2;
         EnemySpawner._maximumSpawnTime = 4;
 
@@ -206,8 +204,6 @@ public class GameManager : MonoBehaviour
 
     public void Phase2()
     {
-        Debug.Log("PHASE 2");
-
         EnemySpawner._minimumSpawnTime = 1;
         EnemySpawner._maximumSpawnTime = 3;
 
@@ -220,8 +216,6 @@ public class GameManager : MonoBehaviour
 
     public void Phase3()
     {
-        Debug.Log("PHASE 3");
-
         EnemySpawner._minimumSpawnTime = 1;
         EnemySpawner._maximumSpawnTime = 2;
         EnemySpawner._minPerSpawn = 2;
@@ -233,7 +227,6 @@ public class GameManager : MonoBehaviour
 
     public void Phase4()
     {
-        Debug.Log("PHASE 4");
         if (score == 0)
             SoberEnding();
 

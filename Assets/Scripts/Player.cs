@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
 
     AudioManager audioManager;
 
+    Animator animator;
+
     void Start()
     {
         gameManager = GameManager.Get();
@@ -32,6 +34,8 @@ public class Player : MonoBehaviour
         startingX = 0.0f;
 
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -59,8 +63,14 @@ public class Player : MonoBehaviour
 
         rb.MovePosition(vecMovePosition);
 
+    }
+
+    private void Update()
+    {
         if (canUseItem && Input.GetKeyUp(KeyCode.Space))
         {
+            animator.SetTrigger("isAttack");
+
             if (gameManager.DecrementBaguettes())
             {
                 BaugetteShockWave();
