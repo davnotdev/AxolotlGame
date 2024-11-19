@@ -11,7 +11,12 @@ public class Barrier : MonoBehaviour
         Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
         if (rb)
         {
-            rb.AddForce(Vector2.Reflect(rb.velocity, normal), ForceMode2D.Impulse);
+            float mul = 1.0f;
+            if (collision.gameObject.tag == "Enemy")
+            {
+                mul = 3.0f;
+            }
+            rb.AddForce(Vector2.Reflect(rb.velocity, normal) * mul, ForceMode2D.Impulse);
         }
     }
 }

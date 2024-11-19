@@ -55,10 +55,14 @@ public class GameManager : MonoBehaviour
     }
 
     void Update() {
-        // Cheats
-        if (Input.GetKeyUp(KeyCode.B)) 
+        if (Input.GetKeyUp(KeyCode.R)) 
         {
-            this.IncrementBaguettes();
+            OnDeath();
+        }
+
+        if (Input.GetKey(KeyCode.C) && Input.GetKeyUp(KeyCode.B)) 
+        {
+            IncrementBaguettes();
         }
 
         // Screen Shake
