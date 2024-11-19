@@ -89,15 +89,17 @@ public class Player : MonoBehaviour
             switch (other.tag) {
                 case "Substance":
                     gameManager.IncrementScore();
+                    audioManager.PlaySFX(audioManager.woohoo);
                     break;
                 case "Baguette":
                     gameManager.IncrementBaguettes();
+                    audioManager.PlaySFX(audioManager.powerpickup);
                     break;
                 case "Toolbox":
                     gameManager.SetHealth((int)gameManager.GetHealth() + 1);
+                    audioManager.PlaySFX(audioManager.powerpickup);
                     break;
             }
-            audioManager.PlaySFX(audioManager.woohoo);
 
             Destroy(other.gameObject);
         }

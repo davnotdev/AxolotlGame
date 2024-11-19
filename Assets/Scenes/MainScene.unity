@@ -366,6 +366,7 @@ MonoBehaviour:
   woohoo: {fileID: 8300000, guid: b868b97c5e8ce37469dd1ce641be1fa2, type: 3}
   ouch: {fileID: 8300000, guid: 27ec4340a042bf64e89b6e1d825a39d8, type: 3}
   frackoff: {fileID: 8300000, guid: 29aa1968b7e344844b96823a365c20b3, type: 3}
+  powerpickup: {fileID: 8300000, guid: a5ff85ec6e5421d47a0781c2fa852620, type: 3}
 --- !u!4 &440049306
 Transform:
   m_ObjectHideFlags: 0

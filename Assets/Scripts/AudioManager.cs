@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip woohoo;
     public AudioClip ouch;
     public AudioClip frackoff;
+    public AudioClip powerpickup;
 
 
     public void PlaySFX(AudioClip clip)
