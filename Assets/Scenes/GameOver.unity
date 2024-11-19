@@ -172,6 +172,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed8565e0c8ca574e95bb54032e719dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextScreen: {fileID: 0}
+  dialogueBox: {fileID: 0}
+  nextScene: 
+  initialStepIdx: 0
 --- !u!1 &216890768
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +337,7 @@ RectTransform:
   m_GameObject: {fileID: 421172072}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.675, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 24073977}

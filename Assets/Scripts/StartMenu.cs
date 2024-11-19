@@ -28,7 +28,8 @@ public class StartMenu : MonoBehaviour
         new string[] {
             "Louie: I can finally bike on my own now. It’s time to find Papa.",
             "Louie: The only way I can find him is through the Tour de Axolotl. It was the last thing he talked about…"
-        }
+        },
+        new string[] {}
     };
 
     private int stepIdx;
@@ -43,7 +44,7 @@ public class StartMenu : MonoBehaviour
     {
         if (dialogueIdx >= dialogue[stepIdx].Length) {
             dialogueBox.text = "";
-            if (stepIdx == 0) 
+            if (stepIdx == initialStepIdx) 
             {
                 nextScreen.SetActive(true);
                 stepIdx++;
