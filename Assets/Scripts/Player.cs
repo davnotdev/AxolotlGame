@@ -69,10 +69,10 @@ public class Player : MonoBehaviour
     {
         if (canUseItem && Input.GetKeyUp(KeyCode.Space))
         {
-            animator.SetTrigger("isAttack");
-
             if (gameManager.DecrementBaguettes())
             {
+                animator.SetTrigger("isAttack");
+
                 BaugetteShockWave();
 
                 audioManager.PlaySFX(audioManager.frackoff);
